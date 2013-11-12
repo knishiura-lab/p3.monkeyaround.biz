@@ -280,9 +280,9 @@ function matchOddClick(idOfObjectClicked) {
  
 function showImage(elementId) {  
     var index = Number(elementId.replace("clonedbox_",'').replace('sample_box_',''));
-    console.log('image index is used for shown:'+index);
+    //console.log('image index is used for shown:'+index);
     var imageUrl = shuffledImages[index];
-    console.log("image url for id:"+index+" is: "+imageUrl);
+    //console.log("image url for id:"+index+" is: "+imageUrl);
     document.getElementById(elementId).style.backgroundImage='url('+imageUrl+")";
 }
 
