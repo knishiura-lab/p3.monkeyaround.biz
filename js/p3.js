@@ -83,6 +83,9 @@ function getWebImagesByKeywords() {
 // pull images from the web, and store the locations into imageLocations globle variable
 getWebImagesByKeywords(); 
 
+//fadeOut the cheat button
+$("#cheat").fadeOut('fast');
+
 // clone 19 boxes, with images populated., so total boxes are 20.
 // also add event listeners to them
 //It will also load for boxes, as long as there are enough images shuffled,
@@ -194,7 +197,6 @@ function hideUnmatchedImages(){
 var numberOfClicks = 0;
 
 // what was the Id of the box that user clicked at the odd time
-//var previousIdClicked ='';
 var idClickedOnOddTime ='';
 
 // logic to handle user click a image object
@@ -214,7 +216,7 @@ function manageUserClick(object) {
         showImage(idOfObjectClicked); 
         numberOfClicks +=1;
 
-        $('#clickCount').html('Total Clicks: '+numberOfClicks);  
+        $('#clickCount').html('Total clicks: '+numberOfClicks);  
 
         // if clicked odd time, simply record it
         if (numberOfClicks%2 ==1) {           
@@ -255,8 +257,9 @@ function processyMatchedStatus(matched) {
 
   clearStatusIn(2000);
 
-  if (matchedCount == 10) {
-    gameFinished = true;
+  if (matchedCount >= 10) {
+    gameFinished = true; 
+    $("#cheat").fadeOut('fast'); 
     var finishingTime = (new Date()).getTime();
     var percentage = Math.round(20*1000/numberOfClicks)/10;
     var finalMessage = 'Your finishing time is: '+ (finishingTime - startingTime)/1000 +" s!";
@@ -332,9 +335,22 @@ $('#cheat').click (function() {
 });
 
 var startingTime = (new Date()).getTime();
-var gameFinished = false;
+var gameFinished = true; 
 
-$("#startGame").click(function (){
+// start, stop game
+$("#start_stop").click(function (){
+  var label = $(this).html();  
+  if (label.indexOf('Start') !=-1 ) { 
+    startGame();     
+  } else {
+    stopGame();
+    $(this).html('Start Game');  
+  }
+  
+});
+
+function startGame(){
+  $('#start_stop').fadeOut('fast');
   // init variable
   matchedImageIdArray = new Array();
   matchCount =0;
@@ -346,20 +362,28 @@ $("#startGame").click(function (){
   $("#clickCount").html('&nbsp;');
   $("#timer").html('&nbsp;');
 
+  $("#status").html('Shuffling images ...');
   shuffleImages(10);
   cloneBoxes();
   showImages();
   
   // give user 10 ~12 seconds to remember the game, and then fade out 
+  $("#status").html('Images will be fading away in about 10 seconds ...');
   fadeOutImages(12*1000);
-});
+}
 
 function fadeOutImages(timeToFadeOut){
   startCountingDown();
   $('[name="boxName"]').fadeOut(timeToFadeOut,function(){
-    hideImages();
-  })
-  $('[name="boxName"]').fadeIn('fast', function(){startTimingUser(); });
+    hideImages(); 
+    $(this).fadeIn('fast');
+    startTimingUser();    
+    $("#clickCount").html('Total clicks: 0');
+    $("#matchCount").html('Total matches: 0');
+    $('#start_stop').fadeIn('fast');
+    $('#start_stop').html('Stop Game');
+    $("#cheat").fadeIn('fast'); 
+  });  
 }
 
 function startTimingUser(){
@@ -368,7 +392,7 @@ function startTimingUser(){
   timingUser(); 
 }
 
-var countDownFinished = false;
+var countDownFinished = true;
 var countDownStartingTime =0;
 
 function startCountingDown(){
@@ -378,25 +402,45 @@ function startCountingDown(){
 }
 
 function countingDownTime(){
-  $("#timer").html('&nbsp;');
+  $("#status").html('&nbsp;');
   if (!countDownFinished) {
       var rightNow = (new Date()).getTime();
       var timeElapsed = rightNow - countDownStartingTime;
       var timeLeft = 10*1000-timeElapsed;
-      if (timeLeft >=1500) {
-        $("#timer").html('Game will start in '+ timeLeft+' ms!');
+      if (timeLeft >=500) {
+        $("#status").html('The game will start in '+ timeLeft+' ms!');
         setTimeout('countingDownTime()',300);
       } else {
         countDownFinished = true;
-        $("#timer").html('&nbsp;');
+        $("#status").html('&nbsp;');
       }
       
   }  
 }
 
+function stopGame(){
+  // reset variables,
+  countDownFinished = true; // so the countdown can stop
+  gameFinished = true; // so user is not timed   
+  
+  // display message 
+  var currentStatusMessage = $("#status").html();
+  if (($.trim(currentStatusMessage)).length !=0) {
+      currentStatusMessage += ' '; // add space!
+  }
+
+  $("#status").html(currentStatusMessage +'Game stopped!');
+  $("#cheat").fadeOut('fast');   
+}
+
+
 // wait a little bit, then clears the status message
 function clearStatusIn(millisToWait){
-  setTimeout('document.getElementById("status").innerHTML="&nbsp;"',millisToWait);
+  //setTimeout('document.getElementById("status").innerHTML="&nbsp;"',millisToWait);
+  $("#status").fadeOut(2000,function() {
+    $(this).html('&nbsp;');
+    $(this).fadeIn('fast');
+  });
 }
 
 // the following 2 events will not be fired, the buttons are hidden
