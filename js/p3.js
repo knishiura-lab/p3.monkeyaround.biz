@@ -1,28 +1,27 @@
 // generic javascript functions
 // test if an elment exists in an array
 function isElementInArray(element, array){ 
-    var exists = false;
-      for (var i=0; i<array.length && !exists; i++) {
-        if (element==array[i]) {
-            exists = true;
-        }
-   }
-   return exists;
+  var exists = false;
+  for (var i=0; i<array.length && !exists; i++) {
+    if (element==array[i]) {
+      exists = true;
+    }
+  }
+return exists;
 }
 
 // shuffle array: 
 // Thanks to http://stackoverflow.com/questions/962802/is-it-correct-to-use-javascript-array-sort-method-for-shuffling
 function shuffle(array) {
-    var tmp, current, top = array.length;
+  var tmp, current, top = array.length;
 
-    if(top) while(--top) {
-      current = Math.floor(Math.random() * (top + 1));
-      tmp = array[current];
-      array[current] = array[top];
-      array[top] = tmp;
-    }
-
-    return array;
+  if(top) while(--top) {
+    current = Math.floor(Math.random() * (top + 1));
+    tmp = array[current];
+    array[current] = array[top];
+    array[top] = tmp;
+  } 
+  return array;
 }
 
 // a global variable to store all images pulled from the web
@@ -31,33 +30,34 @@ var imageLocations = new Array();
 // pull images using google's api, and store the source into a global variable: imageLocations
 function  getWebImagesByKeyword(keyword){ 
   $("#status").html('Loading '+keyword+'...'); 
-	//console.log("getWebImagesByKeyword "+keyword)	;
+  //console.log("getWebImagesByKeyword "+keyword)	;
   //$("#status").html('Please wait while searching for '+keyword);
-	// This is the URL for Google Image Search that we'll make the Ajax call to
-	var google_url = 'http://ajax.googleapis.com/ajax/services/search/images?v=1.0&imgsz=medium&rsz=8&q=' + 
-	    keyword + '&callback=?';	
-		
-	// getJSON is a Ajax method provided to us by jQuery
-	// It's going to make a call to the url we built above, and let us work with the results that Google sends back
-	// Everthing in the function below is what will occur when getJSON is done and sends us the results back from Google
-	$.getJSON(google_url, function(data){
-	
-		// This line will basically parse the data we get back from Google into a nice array we can work with
-	    var images = data.responseData.results;	    
-	
-		// Only attempt to do the following if we had images...I.e there was more than 0 images
-	    if(images.length > 0){
-			
-			// .each() is a jQuery method that lets us loop through a set of data. 
-			// So here our data set is images
-			// Essentially we're unpacking our images we got back from Google, store them into an array
-	        $.each(images, function(key, image) {	        
-            	imageLocations.unshift(image.url);
-	        });
-          //$("#status").html('Done...');
-          clearStatusIn(1000);
-	    }	   
-	});			
+  // This is the URL for Google Image Search that we'll make the Ajax call to
+  var google_url = 'http://ajax.googleapis.com/ajax/services/search/images?v=1.0&imgsz=medium&rsz=8&q=' + 
+  keyword + '&callback=?';	
+
+  // getJSON is a Ajax method provided to us by jQuery
+  // It's going to make a call to the url we built above, and let us work with the results that Google sends back
+  // Everthing in the function below is what will occur when getJSON is done and sends us the results back from Google
+  $.getJSON(google_url, function(data){
+
+    // This line will basically parse the data we get back from Google into a nice array we can work with
+    var images = data.responseData.results;	    
+
+    // Only attempt to do the following if we had images...I.e there was more than 0 images
+    if(images.length > 0){
+
+      // .each() is a jQuery method that lets us loop through a set of data. 
+      // So here our data set is images
+      // Essentially we're unpacking our images we got back from Google, store them into an array
+      $.each(images, function(key, image) {	        
+        imageLocations.unshift(image.url);
+      });
+
+      //$("#status").html('Done...');
+      clearStatusIn(1000);
+    }	   
+  });			
 }
 
 var numberOfImages = 24;
@@ -71,7 +71,7 @@ var keywordsUsed = defaultImageKeywords.join(",");
 // it generates 8 images for ecah keyword, it will prodcue total of 24 images by default.
 function getWebImagesByKeywords() {
   if (defaultImageKeywords.length>0)  {
-    // please note that the defaultImageKeywords array is changed after pop()
+  // please note that the defaultImageKeywords array is changed after pop()
     getWebImagesByKeyword(defaultImageKeywords.pop());
     setTimeout('getWebImagesByKeywords()',1000);
   } else {
@@ -83,7 +83,7 @@ function getWebImagesByKeywords() {
 // pull images from the web, and store the locations into imageLocations globle variable
 getWebImagesByKeywords(); 
 
-//fadeOut the cheat button
+//fadeOut the cheat button upon the initial rendering of the page
 $("#cheat").fadeOut('fast');
 
 // clone 19 boxes, with images populated., so total boxes are 20.
@@ -91,50 +91,50 @@ $("#cheat").fadeOut('fast');
 //It will also load for boxes, as long as there are enough images shuffled,
 function cloneBoxes() { 
 
-  $('#sample_box_0').click(function() {
-      manageUserClick($(this));
+  // to start fresh, remove the boxes first
+  $("div[id ^='box_']").remove();
+
+  // create the first box with box_0
+
+  $('body').append('<div class="box" id="box_0" name="boxName"></div> ');
+
+  $('#box_0').click(function() {
+    manageUserClick($(this));
   });
 
-  // to start fresh, remove the cloned copy first
-  $("div[id ^='clonedbox_']").remove();
-   
-    // there is one box comes with the page with the id: sample_box_0 
-    // clone 19 boxes, the Id are:    
-    //
-    // clonebox_1     
-    // clonebox_2
-    // ....
-    // clonebox_19
-    //
-    // the numeric portion of the id is essential to the application.    
-    // it is used as the index to get the shuffled images
+  // assign the first one too
+  var firstUrl = 'url("'+shuffledImages[0]+'")';    
+  $("#box_0").css('background-image',firstUrl);
+
+
+  // clone 19 boxes based on box_0.
+  // the numeric portion of the id is essential to the application.    
+  // it is used as the index to get the shuffled images
 
   for (i=0; i<19; i++) { 
-      var currentId = i+1;
-      var newBox = $('#sample_box_0').clone();
-      
-      newBox.attr("id","clonedbox_"+currentId);
-      newBox.click(function(){
-          manageUserClick($(this));
-      });
+    var currentId = i+1;
+    var newBox = $('#box_0').clone();
 
-      
-      if (areImagesShuffled()) {
-        if (shuffledImages.length >currentId) {  // if we have enough images for the boxes
-            var imageUrl = 'url("'+shuffledImages[currentId]+'")';
-            //console.log('assigning image:'+currentId+' '+imageUrl);
-            newBox.css('background-image',imageUrl);  
-         } else {
-            alert('Problem! not enough images to assign to the boxes, please load more images or wait for system to load');
-         }
-      }
+    newBox.attr("id","box_"+currentId);
     
-      newBox.appendTo("body"); 
+    newBox.click(function(){
+      manageUserClick($(this));
+    });
+
+
+    if (areImagesShuffled()) {
+      if (shuffledImages.length >currentId) {  // if we have enough images for the boxes
+        var imageUrl = 'url("'+shuffledImages[currentId]+'")';
+        //console.log('assigning image:'+currentId+' '+imageUrl);
+        newBox.css('background-image',imageUrl);  
+      } else {
+        alert('Problem! not enough images to assign to the boxes, please load more images or wait for system to load');
+      }
+    }
+
+    newBox.appendTo("body"); 
   }
 
-    // assign the first one too
-  var firstUrl = 'url("'+shuffledImages[0]+'")';    
-  $("#sample_box_0").css('background-image',firstUrl);
 }
 
 var shuffledImages= new Array();
@@ -143,16 +143,15 @@ var shuffledImages= new Array();
 // if shuffleImages(4), it will generaate 8 images into shuffledImages
 function shuffleImages(pairsOffImages){
   
- 	shuffled = shuffle(imageLocations);
+  shuffled = shuffle(imageLocations);
 
   shuffledArray1 = shuffled.slice(0,pairsOffImages); 	
-  
- 	// duplicate the images, so every image appears twice
+
+  // duplicate the images, so every image appears twice
   shuffledArray2 = shuffle(shuffledArray1);
 
   // combine two arrays together, and shuffle again
- 	shuffledImages = shuffle(shuffledArray1.concat(shuffledArray2)); 
-  //console.log('shuffle image returned:'+ shuffledImages.length);
+  shuffledImages = shuffle(shuffledArray1.concat(shuffledArray2));   
 }
 
 function areImagesShuffled(){
@@ -161,36 +160,34 @@ function areImagesShuffled(){
 
 // logic for hide all images
 function showImages() {
-   var allBoxes = document.getElementsByName("boxName");
-   for (var j =0; j<allBoxes.length; j++) { 
-      var id = allBoxes[j].getAttribute("id").replace("clonedbox_",'').replace('sample_box_','');
-      var image = shuffledImages[id];
-      //console.log("image"+id+": "+image);           
-      allBoxes[j].style.backgroundImage ='url('+image+")";       
-   }
+  var allBoxes = document.getElementsByName("boxName");
+  for (var j =0; j<allBoxes.length; j++) { 
+    var id = allBoxes[j].getAttribute("id").replace("box_",'');
+    var image = shuffledImages[id];              
+    allBoxes[j].style.backgroundImage ='url('+image+")";       
+  }
 }
  
 // logic for hide images
 function hideImages() {
-   var allBoxes = document.getElementsByName("boxName");
-   for (var j =0; j<allBoxes.length; j++) {                     
-      var image = shuffledImages[j];
-      //console.log("image"+j+": "+image);           
-      allBoxes[j].style.backgroundImage ='';       
-   }
+  var allBoxes = document.getElementsByName("boxName");
+  for (var j =0; j<allBoxes.length; j++) {                     
+    var image = shuffledImages[j];                
+    allBoxes[j].style.backgroundImage ='';       
+  }
 }
 
 var matchedImageIdArray= new Array();
 
 // hide only unmatched images
 function hideUnmatchedImages(){
-   var allBoxes = document.getElementsByName("boxName");
-   for (var j =0; j<allBoxes.length; j++) {
+  var allBoxes = document.getElementsByName("boxName");
+    for (var j =0; j<allBoxes.length; j++) {
       var id = allBoxes[j].getAttribute("id");  
       if (!isElementInArray(id,matchedImageIdArray)) { // no matched, hide it!
         allBoxes[j].style.backgroundImage ='';   
       }
-   }
+    }
 }
 
 // how many times user clicked the images on the page
@@ -205,38 +202,39 @@ var idClickedOnOddTime ='';
 // program ignores the sequential clicks on the same image. 
 // considered user might have clicked it by mistake
 function manageUserClick(object) { 
+  if (!countDownFinished || gameFinished) return;
+  var idOfObjectClicked = object.attr('id');
 
-    var idOfObjectClicked = object.attr('id');
+  // only execute when using clicked a different box,
+  // just in case user clicked the same one by mistake
+  if (idClickedOnOddTime != idOfObjectClicked && 
+    !isElementInArray(idOfObjectClicked,matchedImageIdArray)) {  
 
-    // only execute when using clicked a different box,
-    // just in case user clicked the same one by mistake
-    if (idClickedOnOddTime != idOfObjectClicked && 
-        !isElementInArray(idOfObjectClicked,matchedImageIdArray)) {  
+    showImage(idOfObjectClicked); 
+    numberOfClicks +=1;
 
-        showImage(idOfObjectClicked); 
-        numberOfClicks +=1;
+    $('#clickCount').html('Total clicks: '+numberOfClicks);  
 
-        $('#clickCount').html('Total clicks: '+numberOfClicks);  
+    // if clicked odd time, simply record it
+    if (numberOfClicks%2 ==1) {           
+      idClickedOnOddTime = idOfObjectClicked;
+    } 
 
-        // if clicked odd time, simply record it
-        if (numberOfClicks%2 ==1) {           
-           idClickedOnOddTime = idOfObjectClicked;
-        } 
+    // if clicked even time, we need to compare to see if matched
+    else  {  
 
-        // if clicked even time, we need to compare to see if matched
-        else  {            
-           var matched =matchOddClick(idOfObjectClicked);
-           // hide it after 0.5 second if they do not match!
-           if (!matched) {
-              setTimeout('hideImage("'+idOfObjectClicked+'")',500);
-              setTimeout('hideImage("'+idClickedOnOddTime+'")',500);
-           } else {// record the images matched., so they are not clickable, not hide-able
-              recordMatchingId(idClickedOnOddTime,idOfObjectClicked);
-           }
-           processyMatchedStatus(matched);
-        }
+      var matched = matchOddClick(idOfObjectClicked);
+      // hide it after 0.5 second if they do not match!
+      if (!matched) {
+        setTimeout('hideImage("'+idOfObjectClicked+'")',500);
+        setTimeout('hideImage("'+idClickedOnOddTime+'")',500);
+      } else {// record the images matched., so they are not clickable, not hide-able
+        recordMatchingId(idClickedOnOddTime,idOfObjectClicked);
+      }
+
+      processyMatchedStatus(matched);
     }
-
+  }
 }
 
 function recordMatchingId(idOfOddClick, idOfEvenClick){  
@@ -245,13 +243,15 @@ function recordMatchingId(idOfOddClick, idOfEvenClick){
 }
 
 var matchedCount =0;
+
 // it displays the status based on matched or not.
 // record the total matchCount;
 function processyMatchedStatus(matched) {  
   if (matched) {
     matchedCount +=1;      
     $('#status').html("Congratulations! You have a good memory!") ;        
-  } else {
+  }
+  else {
     $('#status').html("Sorry, try again!");      
   }
 
@@ -272,25 +272,24 @@ function processyMatchedStatus(matched) {
 }
 
 function matchOddClick(idOfObjectClicked) {
-  var currentIndex =Number(idOfObjectClicked.replace("clonedbox_",'').replace('sample_box_',''));
-  var oddIndex =Number(idClickedOnOddTime.replace("clonedbox_",'').replace('sample_box_',''));
-  if (shuffledImages[currentIndex]!=shuffledImages[oddIndex]) {       
-     //console.log('not matched');
+  var currentIndex =Number(idOfObjectClicked.replace("box_",''));
+  var oddIndex =Number(idClickedOnOddTime.replace("box_",''));
+  if (shuffledImages[currentIndex]!=shuffledImages[oddIndex]) {            
   }
 
   return shuffledImages[currentIndex]==shuffledImages[oddIndex];
 }
- 
+
+// show image for a given id  
 function showImage(elementId) {  
-    var index = Number(elementId.replace("clonedbox_",'').replace('sample_box_',''));
-    //console.log('image index is used for shown:'+index);
-    var imageUrl = shuffledImages[index];
-    //console.log("image url for id:"+index+" is: "+imageUrl);
-    document.getElementById(elementId).style.backgroundImage='url('+imageUrl+")";
+  var index = Number(elementId.replace("box_",''));  
+  var imageUrl = shuffledImages[index];  
+  document.getElementById(elementId).style.backgroundImage='url('+imageUrl+")";
 }
 
+// hide image for a given id
 function hideImage(elementId) {      
-    document.getElementById(elementId).style.backgroundImage='';
+  document.getElementById(elementId).style.backgroundImage='';
 }
 
 function timingUser(){
@@ -298,7 +297,7 @@ function timingUser(){
   var secondsElapsed = Math.round((now-startingTime)/1000);
   $('#timer').html('Time elapsed: '+secondsElapsed+" s");
   if (!gameFinished){
-      setTimeout('timingUser()',1000);  
+    setTimeout('timingUser()',1000);  
   }  
 }
  
@@ -323,12 +322,12 @@ function validateUserKeyword(){
     clearStatusIn(2000);
     valid = false;
   }
-
   return valid;
 }
 
 
-// when user clicks cheat button, it displays for 1 sec and then fade out 
+// when user clicks cheat button, it displays all images 
+// for 1 sec and then fade out 
 $('#cheat').click (function() {
    showImages();
    setTimeout('hideUnmatchedImages()',1000);
@@ -352,9 +351,9 @@ $("#start_stop").click(function (){
 function startGame(){
   $('#start_stop').fadeOut('fast');
   // init variable
-  matchedImageIdArray = new Array();
-  matchCount =0;
-  clickCount =0;
+  matchedImageIdArray = new Array();  
+  matchedCount = 0;
+  numberOfClicks =0;
 
   // clear all messages
   $("#status").html('&nbsp;');
@@ -373,11 +372,19 @@ function startGame(){
 }
 
 function fadeOutImages(timeToFadeOut){
+
+  // start to count down how much time before the images are gone.
   startCountingDown();
   $('[name="boxName"]').fadeOut(timeToFadeOut,function(){
+
+    // fadeout in a given amount of time and display the empy boxes
     hideImages(); 
     $(this).fadeIn('fast');
-    startTimingUser();    
+
+    // start to time user's time
+    startTimingUser();  
+
+    // init the totals  
     $("#clickCount").html('Total clicks: 0');
     $("#matchCount").html('Total matches: 0');
     $('#start_stop').fadeIn('fast');

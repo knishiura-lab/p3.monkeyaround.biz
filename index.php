@@ -40,8 +40,6 @@
     <button class='button' id="cheat"> Cheat</button>    
     <br> <br>
 
-    <div class="box" id="sample_box_0" name='boxName'></div>  
-
     <script type="text/javascript" src="/js/p3.js"></script>
 
   </body>
