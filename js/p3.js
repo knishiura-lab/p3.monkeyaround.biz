@@ -7,7 +7,7 @@ function isElementInArray(element, array){
       exists = true;
     }
   }
-return exists;
+  return exists;
 }
 
 // shuffle array: 
@@ -26,6 +26,33 @@ function shuffle(array) {
 
 // a global variable to store all images pulled from the web
 var imageLocations = new Array();
+
+// this is an array store a list of images will be pulled from the web
+var defaultImageKeywords = "cats,dogs,snakes".split(",");
+
+// keep track of what keywords used, to pull images from the web,
+// it prevents user entering the same keywords.
+var keywordsUsed = defaultImageKeywords.join(",");
+
+// array of images that are shuffled, used by the 20 boxes as the back-ground images
+var shuffledImages= new Array();
+
+// keep track of what images that user matched
+var matchedImageIdArray= new Array();
+
+// how many times user clicked the images on the page
+var numberOfClicks = 0;
+
+// what was the Id of the box that user clicked at the odd time
+var idClickedOnOddTime ='';
+
+var startingTime = (new Date()).getTime();
+
+var gameFinished = true; 
+
+var matchedCount =0;
+var countDownFinished = true;
+var countDownStartingTime =0;
 
 // pull images using google's api, and store the source into a global variable: imageLocations
 function  getWebImagesByKeyword(keyword){ 
@@ -58,15 +85,7 @@ function  getWebImagesByKeyword(keyword){
       clearStatusIn(1000);
     }	   
   });			
-}
-
-var numberOfImages = 24;
-
-// this is a mutable array store a list of keywords used to pull images from the web
-var defaultImageKeywords = "cats,dogs,snakes".split(",");
-
-// keep track of what keywords used, it prevents user entering the same keywords.
-var keywordsUsed = defaultImageKeywords.join(",");
+} 
 
 // it generates 8 images for ecah keyword, it will prodcue total of 24 images by default.
 function getWebImagesByKeywords() {
@@ -137,8 +156,6 @@ function cloneBoxes() {
 
 }
 
-var shuffledImages= new Array();
-
 // shuffle images and generate shuffled images into shuffledImages.
 // if shuffleImages(4), it will generaate 8 images into shuffledImages
 function shuffleImages(pairsOffImages){
@@ -177,8 +194,6 @@ function hideImages() {
   }
 }
 
-var matchedImageIdArray= new Array();
-
 // hide only unmatched images
 function hideUnmatchedImages(){
   var allBoxes = document.getElementsByName("boxName");
@@ -189,12 +204,6 @@ function hideUnmatchedImages(){
       }
     }
 }
-
-// how many times user clicked the images on the page
-var numberOfClicks = 0;
-
-// what was the Id of the box that user clicked at the odd time
-var idClickedOnOddTime ='';
 
 // logic to handle user click a image object
 // for every 2 clicks, if the image source are same, then. matched
@@ -241,8 +250,6 @@ function recordMatchingId(idOfOddClick, idOfEvenClick){
   matchedImageIdArray.push(idOfOddClick);  
   matchedImageIdArray.push(idOfEvenClick);
 }
-
-var matchedCount =0;
 
 // it displays the status based on matched or not.
 // record the total matchCount;
@@ -333,9 +340,6 @@ $('#cheat').click (function() {
    setTimeout('hideUnmatchedImages()',1000);
 });
 
-var startingTime = (new Date()).getTime();
-var gameFinished = true; 
-
 // start, stop game
 $("#start_stop").click(function (){
   var label = $(this).html();  
@@ -397,10 +401,7 @@ function startTimingUser(){
   startingTime = (new Date()).getTime(); 
   gameFinished = false;
   timingUser(); 
-}
-
-var countDownFinished = true;
-var countDownStartingTime =0;
+}  
 
 function startCountingDown(){
   countDownFinished = false;   
@@ -439,7 +440,6 @@ function stopGame(){
   $("#status").html(currentStatusMessage +'Game stopped!');
   $("#cheat").fadeOut('fast');   
 }
-
 
 // wait a little bit, then clears the status message
 function clearStatusIn(millisToWait){
