@@ -13,7 +13,7 @@
   </head>
 
   <body>	
-    <div class='title'> Memory Game </br>
+    <div class='title'> Memory Game <br>
         <div class='subtitle'> find the matching images as soon as possible </div>
     </div>
 
