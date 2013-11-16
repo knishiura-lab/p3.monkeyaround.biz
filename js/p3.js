@@ -43,6 +43,8 @@ var matchedImageIdArray= new Array();
 // how many times user clicked the images on the page
 var numberOfClicks = 0;
 
+var numberOfBoxes = 20;
+
 // what was the Id of the box that user clicked at the odd time
 var idClickedOnOddTime ='';
 
@@ -105,7 +107,7 @@ getWebImagesByKeywords();
 //fadeOut the cheat button upon the initial rendering of the page
 $("#cheat").fadeOut('fast');
 
-// clone 19 boxes, with images populated., so total boxes are 20.
+// create numberOfBoxes boxes, with images populated. .
 // also add event listeners to them
 //It will also load for boxes, as long as there are enough images shuffled,
 function cloneBoxes() { 
@@ -130,8 +132,8 @@ function cloneBoxes() {
   // the numeric portion of the id is essential to the application.    
   // it is used as the index to get the shuffled images
 
-  for (i=0; i<19; i++) { 
-    var currentId = i+1;
+  for (i=1; i<numberOfBoxes; i++) {  // clone numberOfBoxes -1  
+    var currentId = i;
     var newBox = $('#box_0').clone();
 
     newBox.attr("id","box_"+currentId);
@@ -184,7 +186,7 @@ function showImages() {
   //   var image = shuffledImages[id];              
   //   allBoxes[j].style.backgroundImage ='url('+image+")";       
   // }
-  for (var i=0; i<20; i++) {
+  for (var i=0; i<numberOfBoxes; i++) {
     var id = "box_"+i;    
     showImage(id);
   }
@@ -198,7 +200,7 @@ function hideImages() {
   //   var image = shuffledImages[j];                
   //   allBoxes[j].style.backgroundImage ='';       
   // }
-  for (var i=0; i<20; i++) {
+  for (var i=0; i<numberOfBoxes; i++) {
     var id = "box_"+i;    
     hideImage(id);
   }
@@ -216,7 +218,7 @@ function hideUnmatchedImages(){
   //     }
   //   }
 
-  for (var i=0; i<20; i++) {
+  for (var i=0; i<numberOfBoxes; i++) {
     var id = "box_"+i;
     if (!isElementInArray(id,matchedImageIdArray)) { // no matched, hide it!
       hideImage(id);
@@ -275,7 +277,8 @@ function recordMatchingId(idOfOddClick, idOfEvenClick){
 // record the total matchCount;
 function processMatchedStatus(matched) {  
   if (matched) {
-    matchedCount +=1;      
+    matchedCount +=1; 
+    $('#matchCount').html('Total matches: '+(matchedCount*2));       
     $('#status').html("Congratulations! You have a good memory!") ;        
   }
   else {
@@ -284,18 +287,15 @@ function processMatchedStatus(matched) {
 
   clearStatusIn(2000);
 
-  if (matchedCount >= 10) {
+  if (matchedCount >= numberOfBoxes/2) {
     gameFinished = true; 
     $("#cheat").fadeOut('fast'); 
     var finishingTime = (new Date()).getTime();
-    var percentage = Math.round(20*1000/numberOfClicks)/10;
-    var finalMessage = 'Your finishing time is: '+ (finishingTime - startingTime)/1000 +" s!";
-    finalMessage += "and "+percentage+"% of your clicks produced positive results\n";
-    $('#status').html('Congratulations!You have found all of the matching images!\n'+ finalMessage);      
-  }
-
-  $('#matchCount').html('Total matches: '+(matchedCount*2));  
-  
+    var percentage = Math.round(matchedCount*2000/numberOfClicks)/10;
+    var finalMessage = 'Your finishing time is: '+ (finishingTime - startingTime)/1000 +" seconds!\n";
+    finalMessage += ""+percentage+"% of your clicks produced positive results\n";
+    alert('Congratulations on your finding all of the matching images!\n'+ finalMessage);      
+  } 
 }
 
 function matchOddClick(idOfObjectClicked) {
