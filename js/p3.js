@@ -177,32 +177,52 @@ function areImagesShuffled(){
 
 // logic for hide all images
 function showImages() {
-  var allBoxes = document.getElementsByName("boxName");
-  for (var j =0; j<allBoxes.length; j++) { 
-    var id = allBoxes[j].getAttribute("id").replace("box_",'');
-    var image = shuffledImages[id];              
-    allBoxes[j].style.backgroundImage ='url('+image+")";       
+  // IE does not like this way to set background image
+  // var allBoxes = document.getElementsByName("boxName");
+  // for (var j =0; j<allBoxes.length; j++) { 
+  //   var id = allBoxes[j].getAttribute("id").replace("box_",'');
+  //   var image = shuffledImages[id];              
+  //   allBoxes[j].style.backgroundImage ='url('+image+")";       
+  // }
+  for (var i=0; i<20; i++) {
+    var id = "box_"+i;    
+    showImage(id);
   }
 }
  
 // logic for hide images
 function hideImages() {
-  var allBoxes = document.getElementsByName("boxName");
-  for (var j =0; j<allBoxes.length; j++) {                     
-    var image = shuffledImages[j];                
-    allBoxes[j].style.backgroundImage ='';       
+  // IE does not like this way to set background image
+  // var allBoxes = document.getElementsByName("boxName");
+  // for (var j =0; j<allBoxes.length; j++) {                     
+  //   var image = shuffledImages[j];                
+  //   allBoxes[j].style.backgroundImage ='';       
+  // }
+  for (var i=0; i<20; i++) {
+    var id = "box_"+i;    
+    hideImage(id);
   }
+
 }
 
 // hide only unmatched images
 function hideUnmatchedImages(){
-  var allBoxes = document.getElementsByName("boxName");
-    for (var j =0; j<allBoxes.length; j++) {
-      var id = allBoxes[j].getAttribute("id");  
-      if (!isElementInArray(id,matchedImageIdArray)) { // no matched, hide it!
-        allBoxes[j].style.backgroundImage ='';   
-      }
+  // IE does not like this way to set background image
+  // var allBoxes = document.getElementsByName("boxName");
+  //   for (var j =0; j<allBoxes.length; j++) {
+  //     var id = allBoxes[j].getAttribute("id");  
+  //     if (!isElementInArray(id,matchedImageIdArray)) { // no matched, hide it!
+  //       allBoxes[j].style.backgroundImage ='';   
+  //     }
+  //   }
+
+  for (var i=0; i<20; i++) {
+    var id = "box_"+i;
+    if (!isElementInArray(id,matchedImageIdArray)) { // no matched, hide it!
+      hideImage(id);
     }
+  }  
+
 }
 
 // logic to handle user click a image object
@@ -241,7 +261,7 @@ function manageUserClick(object) {
         recordMatchingId(idClickedOnOddTime,idOfObjectClicked);
       }
 
-      processyMatchedStatus(matched);
+      processMatchedStatus(matched);
     }
   }
 }
@@ -253,7 +273,7 @@ function recordMatchingId(idOfOddClick, idOfEvenClick){
 
 // it displays the status based on matched or not.
 // record the total matchCount;
-function processyMatchedStatus(matched) {  
+function processMatchedStatus(matched) {  
   if (matched) {
     matchedCount +=1;      
     $('#status').html("Congratulations! You have a good memory!") ;        
@@ -368,7 +388,7 @@ function startGame(){
   $("#status").html('Shuffling images ...');
   shuffleImages(10);
   cloneBoxes();
-  showImages();
+  //showImages();
   
   // give user 10 ~12 seconds to remember the game, and then fade out 
   $("#status").html('Images will be fading away in about 10 seconds ...');
