@@ -1,3 +1,4 @@
+
 // generic javascript functions
 // test if an elment exists in an array
 function isElementInArray(element, array){ 
@@ -92,12 +93,13 @@ function  getWebImagesByKeyword(keyword){
 // it generates 8 images for ecah keyword, it will prodcue total of 24 images by default.
 function getWebImagesByKeywords() {
   if (defaultImageKeywords.length>0)  {
-  // please note that the defaultImageKeywords array is changed after pop()
+    // please note that the defaultImageKeywords array is changed after pop()
     getWebImagesByKeyword(defaultImageKeywords.pop());
     setTimeout('getWebImagesByKeywords()',1000);
   } else {
     $("#status").html('&nbsp;');
     clearStatusIn(1000);
+    $("#start_stop").fadeIn("fast");
   }
 }
 
@@ -105,7 +107,7 @@ function getWebImagesByKeywords() {
 getWebImagesByKeywords(); 
 
 //fadeOut the cheat button upon the initial rendering of the page
-$("#cheat").fadeOut('fast');
+//$("#cheat").fadeOut('fast');
 
 // create numberOfBoxes boxes, with images populated. .
 // also add event listeners to them
@@ -288,37 +290,45 @@ function processMatchedStatus(matched) {
   clearStatusIn(2000);
 
   if (matchedCount >= numberOfBoxes/2) {
-    gameFinished = true; 
-    $("#cheat").fadeOut('fast'); 
-    var finishingTime = (new Date()).getTime();
-    var percentage = Math.round(matchedCount*2000/numberOfClicks)/10;
-    var finalMessage = 'Your finishing time is: '+ (finishingTime - startingTime)/1000 +" seconds!\n";
-    finalMessage += ""+percentage+"% of your clicks produced positive results\n";
-    alert('Congratulations on your finding all of the matching images!\n'+ finalMessage);      
+     handleGameFinished();    
   } 
 }
 
+// handle the logic when the game is finished
+function handleGameFinished(){
+  gameFinished = true; 
+  $("#cheat").fadeOut('fast'); 
+  var finishingTime = (new Date()).getTime();
+  var percentage = Math.round(matchedCount*2000/numberOfClicks)/10;
+  var finalMessage = 'Your finishing time is: '+ (finishingTime - startingTime)/1000 +" seconds!\n";
+  finalMessage += ""+percentage+"% of your clicks produced positive results\n";
+  alert('Congratulations on your finding all of the matching images!\n'+ finalMessage); 
+  $("#start_stop").html('Start Game');
+}
+
+// test if an even numbered click matches an odd numbered click
+// return true: if 2 sequential clicks of the same images (shuffledImages's index)
 function matchOddClick(idOfObjectClicked) {
   var currentIndex =Number(idOfObjectClicked.replace("box_",''));
   var oddIndex =Number(idClickedOnOddTime.replace("box_",''));
-  if (shuffledImages[currentIndex]!=shuffledImages[oddIndex]) {            
-  }
-
+  
   return shuffledImages[currentIndex]==shuffledImages[oddIndex];
 }
 
-// show image for a given id  
+// show image for a given html element id  
 function showImage(elementId) {  
   var index = Number(elementId.replace("box_",''));  
   var imageUrl = shuffledImages[index];  
   document.getElementById(elementId).style.backgroundImage='url('+imageUrl+")";
 }
 
-// hide image for a given id
+// hide image for a given html element id
 function hideImage(elementId) {      
   document.getElementById(elementId).style.backgroundImage='';
 }
 
+// timing user how much time elapsed since started the game
+// and display the time in the timer field
 function timingUser(){
   var now = (new Date()).getTime(); 
   var secondsElapsed = Math.round((now-startingTime)/1000);
@@ -367,11 +377,13 @@ $("#start_stop").click(function (){
     startGame();     
   } else {
     stopGame();
+    // change the label to Start Game
     $(this).html('Start Game');  
   }
   
 });
 
+// start games logic, invoked by clicking start-stop game button
 function startGame(){
   $('#start_stop').fadeOut('fast');
   // init variable
@@ -395,6 +407,7 @@ function startGame(){
   fadeOutImages(12*1000);
 }
 
+// fade out images wihin a specific time
 function fadeOutImages(timeToFadeOut){
 
   // start to count down how much time before the images are gone.
@@ -446,6 +459,7 @@ function countingDownTime(){
   }  
 }
 
+// start games logic, invoked by clicking start-stop game button
 function stopGame(){
   // reset variables,
   countDownFinished = true; // so the countdown can stop
@@ -470,15 +484,14 @@ function clearStatusIn(millisToWait){
   });
 }
 
-// the following 2 events will not be fired, the buttons are hidden
-// logic for populate images, the button is hidden, the 
-$('#populate').click (function() {
-  shuffleImages(10);
-  cloneBoxes();
-  showImages();
+//everytime when user types something in imageKeywords field
+// if the length is greater than 1, show the load button
+$('#imageKeywords').keyup(function() {
+  var keyWordsEntered = $.trim($('#imageKeywords').val());  
+  if (keyWordsEntered.length>1) {
+    $('#loadUserImages').fadeIn('fast');
+  }
+  else {
+    $('#loadUserImages').fadeOut('fast');
+  }
 });
-
-// logic for hide images
-$('#hideImages').click (function() {
-   hideImages();
- });

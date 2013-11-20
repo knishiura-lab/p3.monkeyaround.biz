@@ -14,7 +14,7 @@
 
   <body>	
     <div class='title'> Memory Game <br>
-        <div class='subtitle'> find the matching images as soon as possible </div>
+        <div class='subtitle'> find the matching images as fast as you can </div>
     </div>
 
 
@@ -32,12 +32,10 @@
     <div class="status" id="timer"> </div>
     <div class="status" id="clickCount"> </div> 
     <div class="status" id="matchCount"> </div> <br>
-    
-    <button class='button' style="display:none" id="populate"> Populate Images</button>  
-    <button class='button' style="display:none" id="hideImages"> Hide Images</button> 
-    
+
     <button class='button' id="start_stop">Start Game</button> 
-    <button class='button' id="cheat"> Cheat</button>    
+    <button class='button' id="cheat"> Cheat</button> 
+    
     <br> <br>
 
     <script type="text/javascript" src="/js/p3.js"></script>
