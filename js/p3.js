@@ -301,7 +301,7 @@ function handleGameFinished(){
   var finishingTime = (new Date()).getTime();
   var percentage = Math.round(matchedCount*2000/numberOfClicks)/10;
   var finalMessage = 'Your finishing time is: '+ (finishingTime - startingTime)/1000 +" seconds!\n";
-  finalMessage += ""+percentage+"% of your clicks produced positive results\n";
+  finalMessage += ""+percentage+"% of your clicks produced positive results!\n";
   alert('Congratulations on your finding all of the matching images!\n'+ finalMessage); 
   $("#start_stop").html('Start Game');
 }
