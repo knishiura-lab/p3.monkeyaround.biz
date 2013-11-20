@@ -7,12 +7,14 @@
 
     <!-- Common CSS/JSS -->
     <link rel="stylesheet" href="/css/p3.css" type="text/css">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" /> 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 
   </head>
 
   <body>	
+
     <div class='title'> Memory Game <br>
         <div class='subtitle'> find the matching images as fast as you can </div>
     </div>
@@ -24,6 +26,17 @@
      <div class="subinstructions">Disclaimer: There is no gaurantee that your images will be added because the program will shuffle images from a pool of images. </div>
      </div>
 
+    <div id="musicConfirmation" title="Listen and Play"> 
+      <p> 
+        Listen and Play, Makes your day! 
+      </p>
+      <p>
+        Do you want to listen music while you play the game?
+      </p>
+      <p>
+        "Listen and Play" increases the chance of getting caught if player at work! <img src='img/smile.gif' alt='image not supported by browser'>
+      </p>
+    </div>
 
     <label for="imageKeywords"> Enter a word to add images of your choice (optional):</label>      
     <input type="text" id="imageKeywords" name='imageKeywords'>    

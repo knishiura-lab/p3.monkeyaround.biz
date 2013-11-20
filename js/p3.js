@@ -495,3 +495,29 @@ $('#imageKeywords').keyup(function() {
     $('#loadUserImages').fadeOut('fast');
   }
 });
+ 
+// the game is kind of stressful to play, 
+// play short music  (loop) for user,so it can play with calm mode
+function playMusic() { 
+  soundEmbed = document.createElement("embed");
+  soundEmbed.setAttribute("src", 'music/POL-cave-story-short.wav');
+  soundEmbed.setAttribute("hidden", true);
+  soundEmbed.setAttribute("autostart", true);
+  soundEmbed.setAttribute("loop", true);
+  document.body.appendChild(soundEmbed); 
+} 
+
+// display modal window to ask user for music decision
+$("#musicConfirmation").dialog({
+  modal: true,
+  buttons: {
+    Yes: function() {
+      playMusic();
+      $( this ).dialog( "close" );
+    },
+    No: function() {
+      $( this ).dialog( "close" );
+      // do not play music;
+    }  
+  }
+});
