@@ -55,7 +55,7 @@ var gameFinished = true;
 
 var matchedCount =0;
 var countDownFinished = true;
-var countDownStartingTime =0;
+var countDownStartingTime =0;  
 
 // pull images using google's api, and store the source into a global variable: imageLocations
 function  getWebImagesByKeyword(keyword){ 
@@ -289,7 +289,7 @@ function processMatchedStatus(matched) {
 
   clearStatusIn(2000);
 
-  if (matchedCount >= numberOfBoxes/2) {
+  if (matchedCount >= numberOfBoxes/20) {//2
      handleGameFinished();    
   } 
 }
@@ -300,10 +300,10 @@ function handleGameFinished(){
   $("#cheat").fadeOut('fast'); 
   var finishingTime = (new Date()).getTime();
   var percentage = Math.round(matchedCount*2000/numberOfClicks)/10;
-  var finalMessage = 'Your finishing time is: '+ (finishingTime - startingTime)/1000 +" seconds!\n";
-  finalMessage += ""+percentage+"% of your clicks produced positive results!\n";
-  alert('Congratulations on your finding all of the matching images!\n'+ finalMessage); 
-  $("#start_stop").html('Start Game');
+  var finalMessage = 'You completed the challenge in '+ (finishingTime - startingTime)/1000 +" seconds!\n";
+  finalMessage += ""+percentage+"% of your clicks produced positive results.\n";
+  alert('Congratulations on finding all of the matching images!\n'+ finalMessage); 
+  $("#start_stop").html('Start Game');  
 }
 
 // test if an even numbered click matches an odd numbered click
@@ -500,23 +500,25 @@ $('#imageKeywords').keyup(function() {
 // play short music  (loop) for user,so it can play with calm mode
 function playMusic() { 
   soundEmbed = document.createElement("embed");
+  soundEmbed.setAttribute("id", "musicId");
   soundEmbed.setAttribute("src", 'music/POL-cave-story-short.wav');
   soundEmbed.setAttribute("hidden", true);
   soundEmbed.setAttribute("autostart", true);
-  soundEmbed.setAttribute("loop", true);
+  soundEmbed.setAttribute("loop", true);  
   document.body.appendChild(soundEmbed); 
 } 
 
 // display modal window to ask user for music decision
 $("#musicConfirmation").dialog({
   modal: true,
+  width:550,
   buttons: {
-    Yes: function() {
-      playMusic();
-      $( this ).dialog( "close" );
+    'Yes, Listen and Play': function() {
+      playMusic();      
+      $(this).dialog( "close" );
     },
-    No: function() {
-      $( this ).dialog( "close" );
+    'No, Keep It Quiet Please': function() {
+      $(this).dialog( "close" );
       // do not play music;
     }  
   }

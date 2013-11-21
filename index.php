@@ -26,17 +26,23 @@
      <div class="subinstructions">Disclaimer: There is no gaurantee that your images will be added because the program will shuffle images from a pool of images. </div>
     </div>
 
-    <div id="musicConfirmation" title="Listen and Play"> 
+    <div id="musicConfirmation" title="Listen To Music"> 
       <p> 
-        Listen and Play, Makes your day! 
+        Listen and Play, Makes Your Day! 
       </p>
       <p>
-        Do you want to listen music while you play the game?
+        Do you want to listen to music while you play the game?
       </p>
       <p>
-        "Listen and Play" increases the chance of getting caught if player at work! <img src='img/smile.gif' alt='image not supported by browser'>
+        "Listen and Play" increases the chance of getting caught if playing at work!
+        <img src='img/smile.gif' alt='image not supported by browser'>
       </p>
-    </div>
+
+      <p>
+        Some browsers might not support the music format provided by MonkeyAround because of missing plug-in.
+      </p>  
+
+    </div> 
 
     <label for="imageKeywords"> Enter a word to add images of your choice (optional):</label>      
     <input type="text" id="imageKeywords" name='imageKeywords'>    
