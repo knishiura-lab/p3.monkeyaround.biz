@@ -20,7 +20,7 @@
     </div>
 
 
-    <div class="instructions">You will be presented with 20 picitures found from the internet.  <br>
+    <div class="instructions">You will be presented with 20 pictures found from the internet.  <br>
      You have about 10 seconds to memorize the image locations.<br> 
      Optionally, you can add some images of your choice by entering a word, like fish, ants etc. and click 'Load' <br><br>
      <div class="subinstructions">Disclaimer: There is no gaurantee that your images will be added because the program will shuffle images from a pool of images. </div>
