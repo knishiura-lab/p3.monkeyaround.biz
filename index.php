@@ -23,24 +23,21 @@
     <div class="instructions">You will be presented with 20 pictures found from the internet.  <br>
      You have about 10 seconds to memorize the image locations.<br> 
      Optionally, you can add some images of your choice by entering a word, like fish, ants etc. and click 'Load' <br><br>
-     <div class="subinstructions">Disclaimer: There is no gaurantee that your images will be added because the program will shuffle images from a pool of images. </div>
+     <div class="subinstructions">Disclaimer: There is no gaurantee that your images
+      will be added because the program will shuffle images from a pool of images. </div>
     </div>
 
-    <div id="musicConfirmation" title="Listen To Music"> 
-      <p> 
-        Listen and Play, Makes Your Day! 
+    <div id="musicConfirmation" title="Listen and Play, Makes Your Day!">  
+      <p>
+        Do you want to listen to music while you play the game?        
       </p>
       <p>
-        Do you want to listen to music while you play the game?
-      </p>
+        It requires updated plug-in and the high bandwidth of the internet connection.        
+      </p> 
       <p>
         "Listen and Play" increases the chance of getting caught if playing at work!
         <img src='img/smile.gif' alt='image not supported by browser'>
-      </p>
-
-      <p>
-        Some browsers might not support the music format provided by MonkeyAround because of missing plug-in.
-      </p>  
+      </p> 
 
     </div> 
 

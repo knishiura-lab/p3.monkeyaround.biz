@@ -511,7 +511,7 @@ function playMusic() {
 // display modal window to ask user for music decision
 $("#musicConfirmation").dialog({
   modal: true,
-  width:550,
+  width:600,
   buttons: {
     'Yes, Listen and Play': function() {
       playMusic();      
