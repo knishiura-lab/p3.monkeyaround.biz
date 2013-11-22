@@ -289,7 +289,7 @@ function processMatchedStatus(matched) {
 
   clearStatusIn(2000);
 
-  if (matchedCount >= numberOfBoxes/20) {//2
+  if (matchedCount >= numberOfBoxes/2) {//2
      handleGameFinished();    
   } 
 }
