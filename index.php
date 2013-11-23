@@ -16,12 +16,12 @@
   <body>	
 
     <div class='title'> Memory Game <br>
-        <div class='subtitle'> find the matching images as fast as you can </div>
+        <div class='subtitle'> Find the Matching Images As Fast As You Can </div>
     </div>
 
 
     <div class="instructions">You will be presented with 20 pictures found from the internet.  <br>
-     You have about 10 seconds to memorize the image locations.<br> 
+     You have 10 seconds to memorize the image locations.<br> 
      Optionally, you can add some images of your choice by entering a word, like fish, ants etc. and click 'Load' <br><br>
      <div class="subinstructions">Disclaimer: There is no gaurantee that your images
       will be added because the program will shuffle images from a pool of images. </div>
@@ -41,7 +41,19 @@
 
     </div> 
 
-    <label for="imageKeywords"> Enter a word to add images of your choice (optional):</label>      
+     <div id="gameOver" title="Congratulations!">  
+      <p>
+        Congratulations on finding all of the matching images!        
+      </p> 
+      <p>
+        You completed the challenge in <span id='timeElapsed'></span> seconds!     
+      </p> 
+      <p>
+         <span id='positivePercentage'></span>% of your clicks produced positive results.     
+      </p> 
+    </div> 
+
+    <label for="imageKeywords"> Enter a word to load additional images (optional):</label>      
     <input type="text" id="imageKeywords" name='imageKeywords'>    
     <button class='button' id='loadUserImages'> Load </button><br>
     <div class="status" id="status">Please wait... </div> <br>

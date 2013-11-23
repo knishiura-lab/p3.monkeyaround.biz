@@ -295,15 +295,18 @@ function processMatchedStatus(matched) {
 }
 
 // handle the logic when the game is finished
+//including reset the variales, button labels 
+// and display message to user
 function handleGameFinished(){
   gameFinished = true; 
   $("#cheat").fadeOut('fast'); 
+  $("#start_stop").html('Start Game'); 
   var finishingTime = (new Date()).getTime();
-  var percentage = Math.round(matchedCount*2000/numberOfClicks)/10;
-  var finalMessage = 'You completed the challenge in '+ (finishingTime - startingTime)/1000 +" seconds!\n";
-  finalMessage += ""+percentage+"% of your clicks produced positive results.\n";
-  alert('Congratulations on finding all of the matching images!\n'+ finalMessage); 
-  $("#start_stop").html('Start Game');  
+  var positivePercentage = Math.round(matchedCount*2000/numberOfClicks)/10;
+  var timeElapsed = (finishingTime - startingTime)/1000;
+  $("#timeElapsed").html(timeElapsed);
+  $("#positivePercentage").html(positivePercentage);  
+  $("#gameOver" ).dialog('open');
 }
 
 // test if an even numbered click matches an odd numbered click
@@ -511,15 +514,43 @@ function playMusic() {
 // display modal window to ask user for music decision
 $("#musicConfirmation").dialog({
   modal: true,
-  width:600,
-  buttons: {
+  width:650,
+  buttons:{
     'Yes, Listen and Play': function() {
-      playMusic();      
-      $(this).dialog( "close" );
-    },
+                              playMusic();      
+                              $(this).dialog( "close" );
+                            },
     'No, Keep It Quiet Please': function() {
-      $(this).dialog( "close" );
-      // do not play music;
-    }  
-  }
+                                $(this).dialog( "close" );
+                                // do not play music;
+                            }  
+          },
+    show: {
+          effect: "blind",  // pulsate,puff
+          duration: 1000
+          },
+    hide: {
+          effect: "explode",
+          duration: 1000
+          }
 });
+
+// prepare game over  dialog,but doe not display it yet!
+$("#gameOver" ).dialog({
+  autoOpen: false,
+  width:650,
+  buttons:{
+    'I Got It': function(){     
+                              $(this).dialog( "close" );
+                            } 
+            },
+  show: {
+        effect: "blind",
+        duration: 1000
+        },
+  hide: {
+        effect: "explode",
+        duration: 1000
+        }
+});
+
