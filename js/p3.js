@@ -548,14 +548,14 @@ $("#musicConfirmation").dialog({
                                 // do not play music;
                             }  
           },
-    show: {
-          effect: "slide",   
-          duration: 1000
-          },
-    hide: {
-          effect: "explode",
-          duration: 1000
-          }
+  show: {
+        effect: "slide",   
+        duration: 1000
+        },
+  hide: {
+        effect: "explode",
+        duration: 1000
+        }
 });
 
 // display instructions dialog.
