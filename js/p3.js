@@ -28,8 +28,10 @@ function shuffle(array) {
 // a global variable to store all images pulled from the web
 var imageLocations = new Array();
 
-// this is an array store a list of images will be pulled from the web
-var defaultImageKeywords = "cats,dogs,snakes".split(",");
+// this is an array store a list of images pulled from the web.
+// it shuffles an array of zodiac animals and only get the first 3 
+var defaultImageKeywords = shuffle("rat,cow,tigger,rabbit,dragon,snakes,horse,sheep,monkey,chicken,dog,pig".
+    split(",")).slice(0,3);
 
 // keep track of what keywords used, to pull images from the web,
 // it prevents user entering the same keywords.
@@ -59,7 +61,7 @@ var countDownStartingTime =0;
 
 // pull images using google's api, and store the source into a global variable: imageLocations
 function  getWebImagesByKeyword(keyword){ 
-  $("#status").html('Loading '+keyword+'...'); 
+  $("#status").html('Searching images...'); 
   //console.log("getWebImagesByKeyword "+keyword)	;
   //$("#status").html('Please wait while searching for '+keyword);
   // This is the URL for Google Image Search that we'll make the Ajax call to
@@ -511,8 +513,29 @@ function playMusic() {
   document.body.appendChild(soundEmbed); 
 } 
 
+// prepare game over dialog,but doe not display it yet!
+$("#gameOver" ).dialog({
+  modal: true,
+  autoOpen: false,
+  width:650,
+  buttons:{
+    'I Got It': function(){  
+                           $(this).dialog( "close" );                               
+                          } 
+            },
+  show: {
+        effect: "explode",
+        duration: 1000
+        },
+  hide: {
+        effect: "explode",
+        duration: 1000
+        }
+});
+ 
 // display modal window to ask user for music decision
 $("#musicConfirmation").dialog({
+  autoOpen: false,
   modal: true,
   width:650,
   buttons:{
@@ -526,7 +549,7 @@ $("#musicConfirmation").dialog({
                             }  
           },
     show: {
-          effect: "blind",  // pulsate,puff
+          effect: "slide",   
           duration: 1000
           },
     hide: {
@@ -535,15 +558,17 @@ $("#musicConfirmation").dialog({
           }
 });
 
-// prepare game over  dialog,but doe not display it yet!
-$("#gameOver" ).dialog({
-  autoOpen: false,
+// display instructions dialog.
+$("#instructions" ).dialog({
+  modal: true,
+  autoOpen: true,
   width:650,
   buttons:{
-    'I Got It': function(){     
-                              $(this).dialog( "close" );
-                            } 
-            },
+    'I Got It': function(){
+                  $("#musicConfirmation").dialog("open");
+                  $(this).dialog( "close" );
+                } 
+  },
   show: {
         effect: "blind",
         duration: 1000
@@ -553,4 +578,3 @@ $("#gameOver" ).dialog({
         duration: 1000
         }
 });
-
