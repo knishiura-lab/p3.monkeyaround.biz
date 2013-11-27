@@ -519,7 +519,7 @@ $("#gameOver" ).dialog({
   autoOpen: false,
   width:650,
   buttons:{
-    'I Got It': function(){  
+    'OK, I Got It': function(){  
                            $(this).dialog( "close" );                               
                           } 
             },
@@ -564,7 +564,7 @@ $("#instructions" ).dialog({
   autoOpen: true,
   width:650,
   buttons:{
-    'I Got It': function(){
+    'OK, I Got It': function(){
                   $("#musicConfirmation").dialog("open");
                   $(this).dialog( "close" );
                 } 
