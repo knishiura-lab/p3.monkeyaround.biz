@@ -153,7 +153,7 @@ function cloneBoxes() {
         //console.log('assigning image:'+currentId+' '+imageUrl);
         newBox.css('background-image',imageUrl);  
       } else {
-        alert("Oops, that is really embarrassing! It appears that there are not enought images loaded for the game.\n"+
+        alert("Oops, that is really embarrassing! It appears that there are not enough images loaded for the game.\n"+
               "Please wait a little bit and refresh the page");
       }
     }
