@@ -399,7 +399,7 @@ function startGame(){
 
   // clear all messages
   $("#status").html('&nbsp;');
-  $("#matchCount").html('&nbsp;');
+  $("#matchcount").html('&nbsp;');
   $("#clickCount").html('&nbsp;');
   $("#timer").html('&nbsp;');
 
