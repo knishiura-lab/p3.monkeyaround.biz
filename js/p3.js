@@ -31,11 +31,11 @@ var imageLocations = new Array();
 // this is an array store a list of images pulled from the web.
 // it shuffles an array of zodiac animals and only get the first 3 
 var defaultImageKeywords = shuffle("rat,cow,tigger,rabbit,dragon,snakes,horse,sheep,monkey,chicken,dog,pig".
-    split(",")).slice(0,3);
+    split(";")).slice(0,3);
 
 // keep track of what keywords used, to pull images from the web,
 // it prevents user entering the same keywords.
-var keywordsUsed = defaultImageKeywords.join(",");
+var keywordsUsed = defaultImageKeywords.join(";");
 
 // array of images that are shuffled, used by the 20 boxes as the back-ground images
 var shuffledImages= new Array();
