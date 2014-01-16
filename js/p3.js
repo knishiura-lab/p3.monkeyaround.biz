@@ -243,8 +243,7 @@ function manageUserClick(object) {
 
   // only execute when using clicked a different box,
   // just in case user clicked the same one by mistake
-  if (idClickedOnOddTime != idOfObjectClicked && 
-    !isElementInArray(idOfObjectClicked,matchedImageIdArray)) {  
+  if (isElementInArray(idOfObjectClicked,matchedImageIdArray)) {  
 
     showImage(idOfObjectClicked); 
     numberOfClicks +=1;
