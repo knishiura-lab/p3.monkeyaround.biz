@@ -238,7 +238,7 @@ function hideUnmatchedImages(){
 // program ignores the sequential clicks on the same image. 
 // considered user might have clicked it by mistake
 function manageUserClick(object) { 
-  if (!countDownFinished || gameFinished) return;
+  if (gameFinished) return;
   var idOfObjectClicked = object.attr('id');
 
   // only execute when using clicked a different box,
