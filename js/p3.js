@@ -454,12 +454,11 @@ function countingDownTime(){
       var rightNow = (new Date()).getTime();
       var timeElapsed = rightNow - countDownStartingTime;
       var timeLeft = 10*1000-timeElapsed;
+      $("#status").html('The game will start in '+ timeLeft+' ms!');
       if (timeLeft >=500) {
-        $("#status").html('The game will start in '+ timeLeft+' ms!');
         setTimeout('countingDownTime()',300);
       } else {
         countDownFinished = true;
-        $("#status").html('&nbsp;');
       }
       
   }  
