@@ -77,7 +77,7 @@ function  getWebImagesByKeyword(keyword){
     var images = data.responseData.results;	    
 
     // Only attempt to do the following if we had images...I.e there was more than 0 images
-    if(images.length > 0){
+    if(images){
 
       // .each() is a jQuery method that lets us loop through a set of data. 
       // So here our data set is images
