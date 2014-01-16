@@ -506,11 +506,11 @@ $('#imageKeywords').keyup(function() {
 // play short music  (loop) for user,so it can play with calm mode
 function playMusic() { 
   soundEmbed = document.createElement("embed");
-  soundEmbed.setAttribute("id", "musicId");
-  soundEmbed.setAttribute("src", 'music/POL-cave-story-short.wav');
-  soundEmbed.setAttribute("hidden", true);
-  soundEmbed.setAttribute("autostart", true);
-  soundEmbed.setAttribute("loop", true);  
+  soundEmbed.setAttribute("musicId", "id");
+  soundEmbed.setAttribute('music/POL-cave-story-short.wav', "src");
+  soundEmbed.setAttribute(true, "hidden");
+  soundEmbed.setAttribute(true, "autostart");
+  soundEmbed.setAttribute(true, "loop");  
   document.body.appendChild(soundEmbed); 
 } 
 
