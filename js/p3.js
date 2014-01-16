@@ -264,8 +264,6 @@ function manageUserClick(object) {
       if (!matched) {
         setTimeout('hideImage("'+idOfObjectClicked+'")',500);
         setTimeout('hideImage("'+idClickedOnOddTime+'")',500);
-      } else {// record the images matched., so they are not clickable, not hide-able
-        recordMatchingId(idClickedOnOddTime,idOfObjectClicked);
       }
 
       processMatchedStatus(matched);
