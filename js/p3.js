@@ -516,19 +516,19 @@ function playMusic() {
 
 // prepare game over dialog,but doe not display it yet!
 $("#gameOver" ).dialog({
-  modal: true,
-  autoOpen: false,
-  width:650,
-  buttons:{
+  modal= true,
+  autoOpen= false,
+  width=650,
+  buttons={
     'OK, I Got It': function(){  
                            $(this).dialog( "close" );                               
                           } 
             },
-  show: {
+  show= {
         effect: "explode",
         duration: 1000
         },
-  hide: {
+  hide= {
         effect: "explode",
         duration: 1000
         }
