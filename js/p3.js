@@ -373,7 +373,7 @@ function validateUserKeyword(){
 // for 1 sec and then fade out 
 $('#cheat').click (function() {
    showImages();
-   setTimeout('hideUnmatchedImages()',1000);
+   setTimeout('hideImages()',1000);
 });
 
 // start, stop game
