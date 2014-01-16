@@ -8,7 +8,7 @@ function isElementInArray(element, array){
       exists = true;
     }
   }
-  return exists;
+  return exist;
 }
 
 // shuffle array: 
