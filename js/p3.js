@@ -484,6 +484,8 @@ function stopGame(){
 // wait a little bit, then clears the status message
 function clearStatusIn(millisToWait){
   //setTimeout('document.getElementById("status").innerHTML="&nbsp;"',millisToWait);
+  //if (millisToWait>0)
+	setTimeout('clearStatusIn(0)',millisToWait);
   $("#status").fadeOut(2000,function() {
     $(this).html('&nbsp;');
     $(this).fadeIn('fast');
