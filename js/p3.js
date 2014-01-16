@@ -468,7 +468,6 @@ function countingDownTime(){
 // start games logic, invoked by clicking start-stop game button
 function stopGame(){
   // reset variables,
-  countDownFinished = true; // so the countdown can stop
   gameFinished = true; // so user is not timed   
   
   // display message 
