@@ -339,9 +339,7 @@ function timingUser(){
   var now = (new Date()).getTime(); 
   var secondsElapsed = Math.round((now-startingTime)/1000);
   $('#timer').html('Time elapsed: '+secondsElapsed+" s");
-  if (!gameFinished){
-    setTimeout('timingUser()',1000);  
-  }  
+  setTimeout('timingUser()',1000);
 }
  
 $('#loadUserImages').click(function(){
