@@ -372,6 +372,8 @@ function validateUserKeyword(){
 // when user clicks cheat button, it displays all images 
 // for 1 sec and then fade out 
 $('#cheat').click (function() {
+	//new feature: add a 10-sec punishment on cheating
+	startingTime+=10000;
    showImages();
    setTimeout('hideUnmatchedImages()',1000);
 });
