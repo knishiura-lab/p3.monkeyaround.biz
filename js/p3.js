@@ -275,7 +275,7 @@ function manageUserClick(object) {
 
 function recordMatchingId(idOfOddClick, idOfEvenClick){  
   matchedImageIdArray.push(idOfOddClick);  
-  matchedImageIdArray.push(idOfEvenClick);
+  matchedImageIdArray.push(idOfOddClick);
 }
 
 // it displays the status based on matched or not.
