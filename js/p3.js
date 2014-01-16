@@ -457,9 +457,6 @@ function countingDownTime(){
       if (timeLeft >=500) {
         $("#status").html('The game will start in '+ timeLeft+' ms!');
         setTimeout('countingDownTime()',300);
-      } else {
-        countDownFinished = true;
-        $("#status").html('&nbsp;');
       }
       
   }  
