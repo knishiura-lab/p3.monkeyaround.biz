@@ -2,13 +2,11 @@
 // generic javascript functions
 // test if an elment exists in an array
 function isElementInArray(element, array){ 
-  var exists = false;
-  for (var i=0; i<array.length && !exists; i++) {
+  for (var i=0; i<array.length; i++) {
     if (element==array[i]) {
-      exists = true;
+      return true;
     }
   }
-  return exists;
 }
 
 // shuffle array: 
