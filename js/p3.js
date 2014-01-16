@@ -270,6 +270,10 @@ function manageUserClick(object) {
 
       processMatchedStatus(matched);
     }
+  }else{
+	//New feature: click again to undo last click
+	numberOfClicks-=1;
+	idClickedOnOddTime=null;
   }
 }
 
