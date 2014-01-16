@@ -30,7 +30,7 @@ var imageLocations = new Array();
 
 // this is an array store a list of images pulled from the web.
 // it shuffles an array of zodiac animals and only get the first 3 
-var defaultImageKeywords = shuffle("rat,cow,tigger,rabbit,dragon,snakes,horse,sheep,monkey,chicken,dog,pig".
+var defaultImageKeywords = shuffle("rat,cow,tiger,rabbit,dragon,snakes,horse,sheep,monkey,chicken,dog,pig".
     split(",")).slice(0,3);
 
 // keep track of what keywords used, to pull images from the web,
@@ -78,7 +78,9 @@ function  getWebImagesByKeyword(keyword){
 
     // Only attempt to do the following if we had images...I.e there was more than 0 images
     if(images.length > 0){
-
+		//New feature: don't start game if images are less than 20
+		if (images.length<20)
+			handleGameFinished();
       // .each() is a jQuery method that lets us loop through a set of data. 
       // So here our data set is images
       // Essentially we're unpacking our images we got back from Google, store them into an array
