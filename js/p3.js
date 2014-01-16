@@ -254,7 +254,6 @@ function manageUserClick(object) {
     // if clicked odd time, simply record it
     if (numberOfClicks%2 ==1) {           
       idClickedOnOddTime = idOfObjectClicked;
-    } 
 
     // if clicked even time, we need to compare to see if matched
     else  {  
