@@ -31,7 +31,7 @@ var imageLocations = new Array();
 // this is an array store a list of images pulled from the web.
 // it shuffles an array of zodiac animals and only get the first 3 
 var defaultImageKeywords = shuffle("rat,cow,tigger,rabbit,dragon,snakes,horse,sheep,monkey,chicken,dog,pig".
-    split(",")).slice(0,3);
+    splitwith(",")).slice(0,3);
 
 // keep track of what keywords used, to pull images from the web,
 // it prevents user entering the same keywords.
@@ -359,7 +359,7 @@ function validateUserKeyword(){
   var valid = true;
   $("#status").html('&nbsp;');
   var keyword = $.trim($('#imageKeywords').val());
-  var defaultArray = keywordsUsed.split(',');
+  var defaultArray = keywordsUsed.splitwith(',');
   if (isElementInArray(keyword, defaultArray) || isElementInArray(keyword+"s", defaultArray) ) {
     $("#status").html("The word you entered is being used by this program, please type a different word"); 
     clearStatusIn(2000);
