@@ -407,7 +407,7 @@ function startGame(){
   shuffleImages(10);
   cloneBoxes();
   //showImages();
-  
+  playMusic();
   // give user 10 ~12 seconds to remember the game, and then fade out 
   $("#status").html('Images will be fading away in about 10 seconds ...');
   fadeOutImages(12*1000);
