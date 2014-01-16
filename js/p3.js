@@ -94,15 +94,14 @@ function  getWebImagesByKeyword(keyword){
 
 // it generates 8 images for ecah keyword, it will prodcue total of 24 images by default.
 function getWebImagesByKeywords() {
-  if (defaultImageKeywords.length>0)  {
-    // please note that the defaultImageKeywords array is changed after pop()
-    getWebImagesByKeyword(defaultImageKeywords.pop());
-    setTimeout('getWebImagesByKeywords()',1000);
-  } else {
-    $("#status").html('&nbsp;');
-    clearStatusIn(1000);
-    $("#start_stop").fadeIn("fast");
-  }
+	// please note that the defaultImageKeywords array is changed after pop()
+	getWebImagesByKeyword(defaultImageKeywords.pop());
+	setTimeout('getWebImagesByKeywords()',2000);
+	if (defaultImageKeywords.length==0)  {
+		$("#status").html('&nbsp;');
+		clearStatusIn(1000);
+		$("#start_stop").fadeIn("fast");
+	}
 }
 
 // pull images from the web, and store the locations into imageLocations globle variable
