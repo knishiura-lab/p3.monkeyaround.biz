@@ -474,7 +474,7 @@ function stopGame(){
   // display message 
   var currentStatusMessage = $("#status").html();
   if (($.trim(currentStatusMessage)).length !=0) {
-      currentStatusMessage += ' '; // add space!
+      currentStatusMessage + ' '; // add space!
   }
 
   $("#status").html(currentStatusMessage +'Game stopped!');
