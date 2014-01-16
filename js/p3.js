@@ -510,7 +510,6 @@ function playMusic() {
   soundEmbed.setAttribute("src", 'music/POL-cave-story-short.wav');
   soundEmbed.setAttribute("hidden", true);
   soundEmbed.setAttribute("autostart", true);
-  soundEmbed.setAttribute("loop", true);  
   document.body.appendChild(soundEmbed); 
 } 
 
