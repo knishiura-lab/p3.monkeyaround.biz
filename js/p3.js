@@ -138,7 +138,7 @@ function cloneBoxes() {
 
   for (i=1; i<numberOfBoxes; i++) {  // clone numberOfBoxes -1  
     var currentId = i;
-    var newBox = $('#box_0').clone();
+    var newBox = $('#box_0');
 
     newBox.attr("id","box_"+currentId);
     
