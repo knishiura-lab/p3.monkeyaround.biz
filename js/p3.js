@@ -282,7 +282,7 @@ function recordMatchingId(idOfOddClick, idOfEvenClick){
 // record the total matchCount;
 function processMatchedStatus(matched) {  
   if (matched) {
-    matchedCount +=1; 
+    matchedCount -=1; 
     $('#matchCount').html('Total matches: '+(matchedCount*2));       
     $('#status').html("Congratulations! You have a good memory!") ;        
   }
