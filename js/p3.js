@@ -46,7 +46,7 @@ var matchedImageIdArray= new Array();
 // how many times user clicked the images on the page
 var numberOfClicks = 0;
 
-var numberOfBoxes = 20;
+var numberOfBoxes = 30;
 
 // what was the Id of the box that user clicked at the odd time
 var idClickedOnOddTime ='';
