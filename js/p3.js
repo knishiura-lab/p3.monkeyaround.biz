@@ -412,6 +412,7 @@ function startGame(){
   $("#status").html('Images will be fading away in about 10 seconds ...');
   fadeOutImages(12*1000);
 }
+#
 
 // fade out images wihin a specific time
 function fadeOutImages(timeToFadeOut){
