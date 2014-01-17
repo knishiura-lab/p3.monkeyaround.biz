@@ -542,7 +542,6 @@ $("#musicConfirmation").dialog({
   buttons:{
     'Yes, Listen and Play': function() {
                               playMusic();      
-                              $(this).dialog( "close" );
                             },
     'No, Keep It Quiet Please': function() {
                                 $(this).dialog( "close" );
