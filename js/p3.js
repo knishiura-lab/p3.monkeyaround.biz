@@ -325,7 +325,7 @@ function matchOddClick(idOfObjectClicked) {
 function showImage(elementId) {  
   var index = Number(elementId.replace("box_",''));  
   var imageUrl = shuffledImages[index];  
-  document.getElementById(elementId).style.backgroundImage='url('+imageUrl+")";
+  document.getElementByTag(elementId).style.backgroundImage='url('+imageUrl+")";
 }
 
 // hide image for a given html element id
