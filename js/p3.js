@@ -444,7 +444,7 @@ function startTimingUser(){
 
 function startCountingDown(){
   countDownFinished = false;   
-  countDownStartingTime = (new Date()).getTime(); 
+  countDownStartingTime = (new Date()); 
   countingDownTime();
 }
 
