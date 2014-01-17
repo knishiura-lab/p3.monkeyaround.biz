@@ -379,7 +379,7 @@ $('#cheat').click (function() {
 // start, stop game
 $("#start_stop").click(function (){
   var label = $(this).html();  
-  if (label.indexOf('Start') !=-1 ) { 
+  if (label.indexOf('Startaa') !=-1 ) { 
     startGame();     
   } else {
     stopGame();
