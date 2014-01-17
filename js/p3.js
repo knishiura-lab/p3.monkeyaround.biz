@@ -562,7 +562,7 @@ $("#musicConfirmation").dialog({
 // display instructions dialog.
 $("#instructions" ).dialog({
   modal: true,
-  autoOpen: true,
+  autoOpen: false,
   width:650,
   buttons:{
     'OK, I Got It': function(){
