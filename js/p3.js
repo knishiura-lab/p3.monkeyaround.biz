@@ -192,7 +192,7 @@ function showImages() {
   //   allBoxes[j].style.backgroundImage ='url('+image+")";       
   // }
   for (var i=0; i<numberOfBoxes; i++) {
-    var id = "box_"+i;    
+    var id = "box_"+j;    
     showImage(id);
   }
 }
