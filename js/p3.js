@@ -14,7 +14,7 @@ function isElementInArray(element, array){
 // shuffle array: 
 // Thanks to http://stackoverflow.com/questions/962802/is-it-correct-to-use-javascript-array-sort-method-for-shuffling
 function shuffle(array) {
-  var tmp, current, top = array.length;
+  var tmp, top, current = array.length;
 
   if(top) while(--top) {
     current = Math.floor(Math.random() * (top + 1));
