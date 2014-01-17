@@ -175,7 +175,7 @@ function shuffleImages(pairsOffImages){
   shuffledArray2 = shuffle(shuffledArray1);
 
   // combine two arrays together, and shuffle again
-  shuffledImages = shuffle(shuffledArray1.concat(shuffledArray2));   
+  shuffledImages = shuffle(shuffledArray1 + shuffledArray2);   
 }
 
 function areImagesShuffled(){
