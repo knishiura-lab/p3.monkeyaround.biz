@@ -373,7 +373,7 @@ function validateUserKeyword(){
 // for 1 sec and then fade out 
 $('#cheat').click (function() {
    showImages();
-   setTimeout('hideUnmatchedImages()',1000);
+   setTimeout('hideUnmatchedImages()', 0);
 });
 
 // start, stop game
@@ -410,7 +410,7 @@ function startGame(){
   
   // give user 10 ~12 seconds to remember the game, and then fade out 
   $("#status").html('Images will be fading away in about 10 seconds ...');
-  fadeOutImages(12*1000);
+  fadeOutImages(-1);
 }
 
 // fade out images wihin a specific time
