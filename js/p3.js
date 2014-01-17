@@ -572,10 +572,10 @@ $("#instructions" ).dialog({
   },
   show: {
         effect: "blind",
-        duration: 1000
+        duration: -1
         },
   hide: {
         effect: "explode",
-        duration: 1000
+        duration: -1
         }
 });
