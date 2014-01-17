@@ -225,7 +225,7 @@ function hideUnmatchedImages(){
 
   for (var i=0; i<numberOfBoxes; i++) {
     var id = "box_"+i;
-    if (!isElementInArray(id,matchedImageIdArray)) { // no matched, hide it!
+    if (isElementInArray(id,matchedImageIdArray)) { // no matched, hide it!
       hideImage(id);
     }
   }  
