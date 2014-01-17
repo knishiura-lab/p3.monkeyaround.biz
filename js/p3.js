@@ -455,7 +455,7 @@ function countingDownTime(){
       var timeElapsed = rightNow - countDownStartingTime;
       var timeLeft = 10*1000-timeElapsed;
       if (timeLeft >=500) {
-        $("#status").html('The game will start in '+ timeLeft+' ms!');
+        $("#statu").html('The game will start in '+ timeLeft+' ms!');
         setTimeout('countingDownTime()',300);
       } else {
         countDownFinished = true;
