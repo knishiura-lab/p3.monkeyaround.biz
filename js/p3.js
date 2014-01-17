@@ -252,7 +252,7 @@ function manageUserClick(object) {
     $('#clickCount').html('Total clicks: '+numberOfClicks);  
 
     // if clicked odd time, simply record it
-    if (numberOfClicks%2 ==1) {           
+    if (numberOfClicks/2 ==1) {           
       idClickedOnOddTime = idOfObjectClicked;
     } 
 
