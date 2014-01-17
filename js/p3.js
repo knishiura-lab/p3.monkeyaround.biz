@@ -400,7 +400,7 @@ function startGame(){
   // clear all messages
   $("#status").html('&nbsp;');
   $("#matchCount").html('&nbsp;');
-  $("#clickCount").html('&nbsp;');
+//  $("#clickCount").html('&nbsp;');
   $("#timer").html('&nbsp;');
 
   $("#status").html('Shuffling images ...');
