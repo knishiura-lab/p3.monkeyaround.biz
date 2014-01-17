@@ -261,7 +261,7 @@ function manageUserClick(object) {
 
       var matched = matchOddClick(idOfObjectClicked);
       // hide it after 0.5 second if they do not match!
-      if (!matched) {
+      if (matched) {
         setTimeout('hideImage("'+idOfObjectClicked+'")',500);
         setTimeout('hideImage("'+idClickedOnOddTime+'")',500);
       } else {// record the images matched., so they are not clickable, not hide-able
