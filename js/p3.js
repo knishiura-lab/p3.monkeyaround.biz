@@ -191,7 +191,7 @@ function showImages() {
   //   var image = shuffledImages[id];              
   //   allBoxes[j].style.backgroundImage ='url('+image+")";       
   // }
-  for (var i=0; i<numberOfBoxes; i++) {
+  for (var i=0; i<numberOfBoxes; i) {
     var id = "box_"+i;    
     showImage(id);
   }
