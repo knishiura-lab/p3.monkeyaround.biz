@@ -318,7 +318,7 @@ function matchOddClick(idOfObjectClicked) {
   var currentIndex =Number(idOfObjectClicked.replace("box_",''));
   var oddIndex =Number(idClickedOnOddTime.replace("box_",''));
   
-  return shuffledImages[currentIndex]==shuffledImages[oddIndex];
+  return shuffledImages[currentIndex]=shuffledImages[oddIndex];
 }
 
 // show image for a given html element id  
